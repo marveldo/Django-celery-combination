@@ -12,7 +12,7 @@ def AfterCreated(sender,instance,created,**kwargs):
     if created :
         order = instance
         
-        scheduled_time = timezone.now() + timedelta(days=1)
+        scheduled_time = timezone.now() + timedelta(seconds=10)
         call_after_a_day.apply_async(args=[order.id], eta =scheduled_time)
 
 post_save.connect(AfterCreated, sender = Order)

@@ -1,8 +1,8 @@
 from twilio.rest import Client
-
+import os
 
 user_number = '+2348102980007'
-client = Client('ACa4d01384f35491a38b0a05410650b5d9','7972d88b67839e93bc2df42b40aeeccd')
+client = Client(os.getenv('TWILIO_ACCOUNT_SID'), os.getenv('TWILIO_AUTH_TOKEN'))
 call = client.calls.create(
             twiml='<Response><Say>Hello you have a pending order</Say></Response>',
             to=f'{user_number}',
